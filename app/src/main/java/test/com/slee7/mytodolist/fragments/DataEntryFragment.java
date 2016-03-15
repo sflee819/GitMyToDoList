@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import test.com.slee7.mytodolist.R;
 import test.com.slee7.mytodolist.data.ToDoListItem;
@@ -38,7 +37,7 @@ public class DataEntryFragment extends Fragment {
                 // returns 1
                 flag = 1;
             }
-            if (mTitle.getText().toString().trim().length() == 0){
+            if (mDescription.getText().toString().trim().length() == 0){
                 // returns 2. 3 if both are empty
                 flag = flag + 2;
             }

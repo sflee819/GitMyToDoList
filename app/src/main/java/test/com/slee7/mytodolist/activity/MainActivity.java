@@ -1,5 +1,6 @@
 package test.com.slee7.mytodolist.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import test.com.slee7.mytodolist.R;
 import test.com.slee7.mytodolist.data.ToDoListItem;
@@ -91,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     fab.setVisibility(View.VISIBLE);
                 }
+                if (position == 1){
+                    mViewPager.requestFocus();
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mTabLayout.getWindowToken(), 0);
+                }
 
             }
 
@@ -104,6 +111,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition(), true);
+                if (tab.getPosition() == 1){
+                    mViewPager.requestFocus();
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mViewPager.getWindowToken(), 0);
+                }
             }
 
             @Override
