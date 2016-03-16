@@ -3,6 +3,7 @@ package test.com.slee7.mytodolist.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,6 +19,7 @@ public class ToDoListItem implements Parcelable, Comparable<ToDoListItem>{
         this.isChecked = isChecked;
         this.title = title;
         this.toDoDescription = toDoDescription;
+        this.timeAdded = Calendar.getInstance().getTime();
     }
 
     public String getTitle() {

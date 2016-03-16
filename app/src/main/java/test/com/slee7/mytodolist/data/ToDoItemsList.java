@@ -3,6 +3,7 @@ package test.com.slee7.mytodolist.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class ToDoItemsList implements Parcelable {
     }
 
     private ToDoItemsList(Parcel in) {
+        mItems = new ArrayList<ToDoListItem>();
         in.readTypedList(mItems, ToDoListItem.CREATOR);
     }
 
