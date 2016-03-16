@@ -42,12 +42,6 @@ public class ToDoListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
         mListView = (ListView) rootView.findViewById(R.id.toDoListView);
-        if (myData == null){
-            myData = new ToDoItemsList();
-            myData.setmItems(new ArrayList<ToDoListItem>());
-        }
-        mAdapter = new ToDoListAdapter(myData.getmItems());
-        mListView.setAdapter(mAdapter);
         Button mButton = (Button) rootView.findViewById(R.id.deleteButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +98,15 @@ public class ToDoListFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (myData != null) {
-            // fine do nothing
-        } else if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
             // orientation change, or other config changes
             myData = (ToDoItemsList) savedInstanceState.getParcelable("list");
         }
+        if (myData == null){
+            myData = new ToDoItemsList();
+            myData.setmItems(new ArrayList<ToDoListItem>());
+        }
+        mAdapter = new ToDoListAdapter(myData.getmItems());
+        mListView.setAdapter(mAdapter);
     }
 }

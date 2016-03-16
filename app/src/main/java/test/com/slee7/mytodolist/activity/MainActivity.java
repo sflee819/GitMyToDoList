@@ -64,15 +64,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FragmentManager fm = getSupportFragmentManager();
                 ToDoListItem mItem = null;
+                ToDoListFragment listFragment = null;
                 for (Fragment mFragment : fm.getFragments()) {
                     if (mFragment instanceof DataEntryFragment) {
                         mItem = ((DataEntryFragment)mFragment).getInfoFromEntry();
                     }
-                    if (mItem != null && mFragment instanceof ToDoListFragment){
-                        ((ToDoListFragment)mFragment).addNewItem(mItem);
-                        ((ToDoListFragment)mFragment).updateAdapter();
+                    if (mFragment instanceof ToDoListFragment){
+                        listFragment = (ToDoListFragment) mFragment;
                     }
                 }
+                if (mItem != null && listFragment != null){
+                    listFragment.addNewItem(mItem);
+                    listFragment.updateAdapter();
+                }
+
                 // Add todo stuff to list.
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
